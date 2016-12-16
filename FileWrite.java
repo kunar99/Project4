@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,85 +6,55 @@
  */
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Scanner;
+import java.io.InputStreamReader;
 
-/*
- * File: FileWrite.java
- * Author: Dr. Robertson
- * Date: January 1, XXXX
- * Purpose: This program reads
- * ages from a file, copies the data
- * to another file write the average
- * age to another file.
- */
-public class FileWrite {
+public class Week8D {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        Scanner scannerIn = null;
-        FileInputStream in = null;
-        BufferedReader inputStream = null;
-        BufferedWriter outputStream = null;
-        PrintWriter fileOut = null;
-        // For summary data
-        File summaryOut = new File("DataSummary.txt");
-        // Use of Scanner and BufferedReader
-        int[] ages = new int[100];
-        // Counter for age
-        int cnt = 0;
-        int ageSum = 0;
-        try {
-            inputStream = new BufferedReader(new FileReader("Ages.txt"));
-            // Open Copy Output file
 
-            outputStream = new BufferedWriter(new FileWriter("AgesCopy.txt"));
-            scannerIn = new Scanner(inputStream);
-            while (scannerIn.hasNext()) {
-                ages[cnt] = scannerIn.nextInt();
-                // Write to output
-                // \r\n provides string content and new line
-                outputStream.write(ages[cnt] + "\r\n");
-                // Increment ageSum
-                ageSum += ages[cnt];
-                // Increment counter
-                cnt++;
+        int count = 0;
+        int[] wordCount = new int[16];
+
+        BufferedReader inputStreamReader = null;
+
+        String fileLine;
+        try {
+            FileInputStream fileInputStream = new FileInputStream("/Users/johnclayton/Dropbox/Mattis.txt");
+            InputStreamReader streamReader = new InputStreamReader(fileInputStream, "UTF-8");
+            BufferedReader bufferReader = new BufferedReader(streamReader);
+
+
+            System.out.println("The top 16 saying from James " + "\"Mad Dog\" " + "Mattis");
+            System.out.println("___________________________________________________ \n");
+
+            // Read one Line using BufferedReader
+            while ((fileLine = bufferReader.readLine()) != null) {
+                System.out.println(fileLine);
             }
-            // Send summary data to
-            // output file
-            fileOut = new PrintWriter(summaryOut);
-            fileOut.print("Average age = "
-                    + (ageSum / cnt));
+
+            for (int i = 0; i < wordCount.length; i++)
+                if (wordCount[i] != -1)
+                    count++;
+
+            System.out.println("\nThe total number of sentences are: " +count);
 
         } catch (IOException io) {
             System.out.println("File IO exception" + io.getMessage());
-        } finally {
+        }finally {
             // Need another catch for closing
             // the streams
             try {
-                // Close the streams
-                if (outputStream != null) {
-                    outputStream.close();
-                }
-                if (inputStream != null) {
-                    inputStream.close();
-                }
-                if (fileOut != null) {
-                    fileOut.close();
+                if (inputStreamReader != null) {
+                    inputStreamReader.close();
                 }
             } catch (IOException io) {
-                System.out.println("Issue closing the Files" + io.getMessage());
+                System.out.println("Problem closing the Files" + io.getMessage());
             }
+
         }
-        System.out.println("Files writing application complete.");
+
 
     }
 }
