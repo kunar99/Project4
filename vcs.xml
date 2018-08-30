@@ -6,7 +6,12 @@
           <option name="url" value="http://github.com" />
           <option name="userName" value="kunar99" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/kunar99/CMSC-350.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
+    <option name="cloneParentDir" value="$USER_HOME$/Dropbox/Homework/Computer Science/CMSC 350" />
   </component>
 </application>
