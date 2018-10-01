@@ -41,73 +41,50 @@ class BinarySearchTree<BST> {
             return rootNode;
         
         }else {      // Runs data if fraction is found
-
-            //creates a fraction variable and stores the new node data to it
-            Fraction newFractionNode = (Fraction) nextNode.key;
-
-            //variable to hold the return value of comparing the two nodes
-            int compareNodes = (newFractionNode).compareTo(rootNode.key);
-
-            //if the new node is less that the current node, it will store the data to the left node
-            if (compareNodes < 0)
+          
+            Fraction newFractionNode = (Fraction) nextNode.key;     // Creates fraction variable and stores
+           
+            int compareNodes = (newFractionNode).compareTo(rootNode.key);   // Used to hold the return value of the two nodes
+           
+            if (compareNodes < 0)                   // New node is less than current node, store data to the left
                 rootNode.leftSubTree = insertNodeToTree(rootNode.leftSubTree, nextNode);
-
-                //if the new node equals the current node, it will store the data to the right node
-            else if (compareNodes == 0)
+               
+            else if (compareNodes == 0)             // New node is equal to current node, store to the right
                 rootNode.rightSubTree = insertNodeToTree(rootNode.rightSubTree, nextNode);
-
-                //if the new node is greater than the current node, it will store the data to the right side
-            else if (compareNodes > 0)
+                
+            else if (compareNodes > 0)              // New node is greater than current, store to the right
                 rootNode.rightSubTree = insertNodeToTree(rootNode.rightSubTree, nextNode);
 
             return rootNode;
         }
     }
 
-    //this method checks if an object is an integer
-    private boolean isValidInteger(Object node) {
-
-        //if object is an integer, return true
-        if (node instanceof Integer)
-            return true;
-
-            //otherwise, return false
+    private boolean isValidInteger(Object node) {   // Method to confirms object is an integer
+     
+        if (node instanceof Integer)        // Confirms object is an integer 
+            return true;         
         else
             return false;
     }
+  
+    String inOrderTreeTraversal(Tree<BST> node) {       // Method to sort output in ascending order
+      
+        if (node != null) {     // If nodes remain, then execute remainder
 
-    // this method organizes the output in ascending order
-    String inOrderTreeTraversal(Tree<BST> node) {
-
-        //will execute as long as there are nodes remaining
-        if (node != null) {
-
-            //starts with the left node
-            inOrderTreeTraversal(node.leftSubTree);
-
-            //stores each node to the output string
-            output += String.valueOf(node.key + " ");
-
-            //then will traverse to the right node
-            inOrderTreeTraversal(node.rightSubTree);
+            inOrderTreeTraversal(node.leftSubTree); // Run in a left to right order
+            output += String.valueOf(node.key + " ");   // Stores in an output string
+            inOrderTreeTraversal(node.rightSubTree);    // Move left to right
         }
-        return output;
+        return output;          // Return the output data
     }
 
-    // this method organizes the output in descending order
-    String reverseOrderTreeTraversal(Tree<BST> node) {
+    String reverseOrderTreeTraversal(Tree<BST> node) {      // Method sorts in descending order
 
-        //will execute as long as there are nodes remaining
-        if (node != null) {
-
-            //starts with the right node
-            reverseOrderTreeTraversal(node.rightSubTree);
-
-            //stores each node to the output string
-            output += String.valueOf(node.key + " ");
-
-            //then will traverse to the left node
-            reverseOrderTreeTraversal(node.leftSubTree);
+        if (node != null) {         // Keep running if there are remaining nodes
+    
+            reverseOrderTreeTraversal(node.rightSubTree);   // Run from right to left
+            output += String.valueOf(node.key + " ");   // Stores node in output string
+            reverseOrderTreeTraversal(node.leftSubTree);        // Run right to left
         }
         return output;
     }
