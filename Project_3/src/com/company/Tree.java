@@ -3,35 +3,26 @@ package com.company;
 // Created by JClayton on 09/20/2018
 
 public class Tree<BST> {
+ 
+    Tree<BST> leftSubTree;   // Holds left child
+    Tree<BST> rightSubTree;  // Holds right child
+    BST key;        // Holds the key
 
-    //to hold left child node
-    Tree<BST> leftSubTree;
-
-    //to hold right child node
-    Tree<BST> rightSubTree;
-
-    //to hold the key
-    BST key;
-
-    //constructor
-    Tree(BST key) {
+    Tree(BST key) {     // Creating constructor
         this.key = key;
         this.leftSubTree = null;
         this.rightSubTree = null;
     }
 
-    //this method returns the right node when called
-    public Tree<BST> getRightNode() {
+    public Tree<BST> getRightNode() {   // Method to return the right node
         return rightSubTree;
     }
-
-    //this method returns the left node when called
-    public Tree<BST> getLeftNode() {
+    
+    public Tree<BST> getLeftNode() {    // Method to return the left node
         return leftSubTree;
     }
 
-    //to string method
-    @Override
+    @Override       // Tostring method
     public String toString() {
         return key + " ";
     }
