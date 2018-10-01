@@ -6,8 +6,7 @@ import javax.swing.JOptionPane;
 
 class NumberFormatExpression extends Exception {
 
-    //this method displays the error message when it is called
-    static void getError() {
+    static void getError() {        // Method to give error message for non numeric entered data
         JOptionPane.showMessageDialog(null, "Error: Non-Numeric Input");
     }
 }
