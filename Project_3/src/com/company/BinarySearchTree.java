@@ -18,38 +18,29 @@ class BinarySearchTree<BST> {
         }
         return root;        // Returns value
     }
-
-    //this method is what inserts each node to the tree
-    private Tree<BST> insertNodeToTree(Tree<BST> rootNode, Tree<BST> nextNode) {
-
-        //checks if the rootNode is null
-        if (rootNode == null)
+    
+    private Tree<BST> insertNodeToTree(Tree<BST> rootNode, Tree<BST> nextNode) {    // Insert node to the tree
+    
+        if (rootNode == null)           // Confirms root node is null
             return nextNode;
 
-        //executes if the data is an integer
-        if (isValidInteger(rootNode.key)) {
-
-            //converts the given nodes to integers and stores them to a variable
-            int parentNode = (Integer) rootNode.key;
+        if (isValidInteger(rootNode.key)) {     // Runs data if confirmed integer
+           
+            int parentNode = (Integer) rootNode.key;    // Changes nodes to integers and stores
             int newNode = (Integer) nextNode.key;
-
-            //if the new node is less that the current node, it will store the data to the left node
-            if (newNode < parentNode)
+          
+            if (newNode < parentNode)           // Stores data to the left node if less than current node
                 rootNode.leftSubTree = insertNodeToTree(rootNode.leftSubTree, nextNode);
 
-                //if the new node equals the current node, it will store the data to the right node
-            else if (newNode == parentNode)
+            else if (newNode == parentNode)      // Stores data in right node if found equal to current node
                 rootNode.rightSubTree = insertNodeToTree(rootNode.rightSubTree, nextNode);
-
-                //if the new node is greater than the current node, it will store the data to the right side
-            else if (newNode > parentNode)
+          
+            else if (newNode > parentNode)      // Stores in right node, if found greater than current node
                 rootNode.rightSubTree = insertNodeToTree(rootNode.rightSubTree, nextNode);
 
             return rootNode;
-        }
-
-        //executes if data is a fraction
-        else {
+        
+        }else {      // Runs data if fraction is found
 
             //creates a fraction variable and stores the new node data to it
             Fraction newFractionNode = (Fraction) nextNode.key;
